@@ -25,7 +25,7 @@
 -----------------------------------------------------------------------
 ## Overview
 This interaction system provides a simple and modular solution for handling interactions between an interactor (InteractorComponent) and interactable actors (InteractableComponent) in Unreal Engine. The system facilitates communication between these components through a defined interface, allowing you to easily implement and customize interactions within your projects!
-It works by having an Interactor and an Interactable, which communicate with each other through an interface. Events are also exposed, so you can have unique per object outcomes if you like. It works by raycasting to the hitbox of the actor, and generally works best in a 1st person setup.
+Events are also exposed, so you can have unique per object outcomes if you like. It works by raycasting to the hitbox of the actor, and generally works best in a 1st person setup.
 
 ### Components
 #### Interactor
