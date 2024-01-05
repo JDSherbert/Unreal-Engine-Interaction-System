@@ -25,8 +25,8 @@ class UUserWidget;
 * Interactor Component Class. Performs behaviors related to interactions.
 * Receives input from EnhancedInputSystem Plugin and assigns performs interactions based on definitions in this class.
 * Make sure to assign a UInputAction to define the bindings for this behavior!
-*	@since 19/01/2023
-*	@author JDSherbert
+* @since 19/01/2023
+* @author JDSherbert
 */
 UCLASS( ClassGroup = "Sherbert", Blueprintable, meta = (BlueprintSpawnableComponent))
 class SHERBERT_API UInteractorComponent : public UActorComponent
@@ -85,8 +85,8 @@ protected:
 
 	/**
 	* Initializer method.
-	*	@since 17/01/2023
-	*	@author JDSherbert
+	* @since 17/01/2023
+	* @author JDSherbert
 	*/
 	void Init();
 
@@ -95,9 +95,9 @@ public:
 	/**
 	* Should be called only by an Interactor Component once during initiation.
 	* Creates a UUserWidget to display cosmetically to the player when an interaction can occur.
-	*	@return UUserWidget* : The interaction widget that was created. Will also be assigned to InteractionUIInstance. Returns nullptr on fail.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return UUserWidget* : The interaction widget that was created. Will also be assigned to InteractionUIInstance. Returns nullptr on fail.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Sherbert|Component|Interaction")
 	UUserWidget* MakeInteractionUIWidget();
@@ -105,9 +105,9 @@ public:
 	/**
 	* Should be called only by an Interactor Component once during initiation.
 	* Creates a UUserWidget to display cosmetically to the player when an interaction cannot occur.
-	*	@return UUserWidget* : The non-interaction widget that was created. Will also be assigned to NoInteractionUIInstance. Returns nullptr on fail.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return UUserWidget* : The non-interaction widget that was created. Will also be assigned to NoInteractionUIInstance. Returns nullptr on fail.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Sherbert|Component|Interaction")
 	UUserWidget* MakeNoInteractionUIWidget();
@@ -115,9 +115,9 @@ public:
 	/**
 	* Raycast method. Scans for an interactable component on a hit object and returns the currently looked at object.
 	* Called every tick.
-	*	@return UInteractableComponent* : The Interactable Component that is being looked at.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return UInteractableComponent* : The Interactable Component that is being looked at.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Sherbert|Component|Interaction")
 	UInteractableComponent* RaycastForInteractable();
@@ -125,10 +125,10 @@ public:
 	/**
 	* Setter method. Assigns the currently focused interactable component into the cache.
 	* Invokes OnLookAt event.
-	*	@param NewInteractableComponent : Sets this as the currently focused interactable.
-	*	@return UBlueGhost_InteractableComponent* : The Interactable Component that is currently focused.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @param NewInteractableComponent : Sets this as the currently focused interactable.
+	* @return UInteractableComponent* : The Interactable Component that is currently focused.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Sherbert|Component|Interaction")
 	UInteractableComponent* AssignFocusedInteractable(UInteractableComponent* NewInteractableComponent);
@@ -136,27 +136,27 @@ public:
 	/**
 	* Unsetter method. Unassigns the currently focused interactable component in the cache (sets to nullptr).
 	* Invokes OnLookAway event.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
-	UFUNCTION(BlueprintCallable, Category = "BlueGhost|Component|Interaction")
+	UFUNCTION(BlueprintCallable, Category = "Sherbert|Component|Interaction")
 	void UnassignFocusedInteractable();
 
 	/**
 	* Display UI method. Cosmetic. Based on input params, will show an interaction or no interaction widget, and hide them when not in use.
-	*	@param bActive : Whether to show or hide the UI Widget.
-	*	@param bCanInteract : If the interactable component is enabled, show the interact UI. Otherwise, show the no interaction UI.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @param bActive : Whether to show or hide the UI Widget.
+	* @param bCanInteract : If the interactable component is enabled, show the interact UI. Otherwise, show the no interaction UI.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Sherbert|Component|Interaction")
 	void DisplayInteractionUIWidget(const bool bActive = false, const bool bCanInteract = true);
 
 	/**
 	* Interaction method. Sends a message to the interactable component on the focused object in a generic way by using events on that component. 
-	*	@param Instigator : Should always be "this", or "self". Lets the interactable know who or what is interacting with it.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @param Instigator : Should always be "this", or "self". Lets the interactable know who or what is interacting with it.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Sherbert|Component|Interaction")
 	void Interact(UInteractorComponent* Instigator);
@@ -164,100 +164,88 @@ public:
 	/**
 	* Comparison method. Returns true if the new interactable component is the same as the currently focused interactable in the cache.
 	* Used to help prevent multiple calls to OnLookAt events on the same interactable.
-	*	@param NewInteractableComponent : The new interactable to compare.
-	*	@return bool : True if NewInteractableComponent matches the cached one.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @param NewInteractableComponent : The new interactable to compare.
+	* @return bool : True if NewInteractableComponent matches the cached one.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Sherbert|Component|Interaction")
 	FORCEINLINE bool CompareInteractable(UInteractableComponent* NewInteractableComponent) { return NewInteractableComponent == FocusedInteractableComponent; }
 
 	/**
 	* Getter method. Returns the first Interactable Component from an actor if one exists.
-	*	@param Actor : The actor to try get the component from.
-	*	@return UInteractableComponent* : The InteractableComponent, if one is found. Otherwise, returns nullptr.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @param Actor : The actor to try get the component from.
+	* @return UInteractableComponent* : The InteractableComponent, if one is found. Otherwise, returns nullptr.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Sherbert|Component|Interaction")
 	InteractableComponent* GetInteractableComponent(const AActor* Actor);
 
 	/**
 	* Getter method. Returns the owner's HUD, if it has one.
-	*	@return AHUD* : The HUD, if one is found. Otherwise, returns nullptr.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return AHUD* : The HUD, if one is found. Otherwise, returns nullptr.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Sherbert|Component|Interaction")
 	FORCEINLINE AHUD* GetInteractorHUD() const { return GetInteractorPlayerController()->GetHUD(); }
 
 	/**
 	* Getter method. Returns the owner's PlayerController, if it has one.
-	*	@return APlayerController* : The PlayerController, if one is found. Otherwise, returns nullptr.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return APlayerController* : The PlayerController, if one is found. Otherwise, returns nullptr.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Sherbert|Component|Interaction")
 	FORCEINLINE APlayerController* GetInteractorPlayerAgentController() const {return PlayerController; }
 
 	/**
 	* Getter method. Returns the Interaction UI Widget instance, if there is one.
-	*	@return UUserWidget* : The UI Widget, if one is found. Otherwise, returns nullptr.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return UUserWidget* : The UI Widget, if one is found. Otherwise, returns nullptr.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, BlueprintCosmetic, Category = "Sherbert|Component|Interaction")
 	FORCEINLINE UUserWidget* GetInteractionUIInstance() const { return InteractionUIInstance; }
 
 	/**
 	* Getter method. Returns the No Interaction UI Widget instance, if there is one.
-	*	@return UBlueGhost_UIWidget* : The UI Widget, if one is found. Otherwise, returns nullptr.
-	*	@since 27/01/2023
-	*	@author JDSherbert
+	* @return UUserWidget* : The UI Widget, if one is found. Otherwise, returns nullptr.
+	* @since 27/01/2023
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, BlueprintCosmetic, Category = "BlueGhost|Component|Interaction")
 	FORCEINLINE UUserWidget* GetNoInteractionUIInstance() const { return NoInteractionUIInstance; }
-
-	/**
-	* Debug method. Draws a visible line to see raycast, and will print hit actor information to the screen where applicable.
-	*	@param Hit : The hit actor to get info from.
-	*	@param TraceStart : The start point of the raycast.
-	* @param TraceEnd : The end point of the raycast.
-	*	@since 27/01/2023
-	*	@author JDSherbert
-	*/
-	UFUNCTION(BlueprintCallable, Category = "Sherbert|Component|Interaction")
-	void DebugHit(const AActor* Hit, const FVector TraceStart, const FVector TraceEnd);
 
 	/* ------------------------------ Events ------------------------------- */
 
 	/**
 	* Event: Triggers when an interactable component containing object is looked at.
-	*	@param @param Target : The interactable component that is being looked at.
+	* @param @param Target : The interactable component that is being looked at.
 	* @since 17/01/2023
-	*	@author JDSherbert
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintImplementableEvent, Category = "Sherbert|Component|Interaction")
 	void Event_OnLookAt(UInteractableComponent* Target);
 
 	/**
 	* Event: Triggers when an interactable containing object is looked away from.
-	*	@param Target : The interactable component that is being looked away from.
+	* @param Target : The interactable component that is being looked away from.
 	* @since 17/01/2023
-	*	@author JDSherbert
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintImplementableEvent, Category = "Sherbert|Component|Interaction")
 	void Event_OnLookAway(UInteractableComponent* Target);
 
 	/**
 	* Event: Triggers when the interactable component containing object is interacted with.
-	*	@param Target : The interactable component that is being interacted with.
+	* @param Target : The interactable component that is being interacted with.
 	* @since 17/01/2023
-	*	@author JDSherbert
+	* @author JDSherbert
 	*/
 	UFUNCTION(BlueprintImplementableEvent, Category = "Sherbert|Component|Interaction")
 	void Event_OnInteraction(UInteractableComponent* Target);
-
 };
 
 /* ------------------------------------------------------------------------------- */
