@@ -24,8 +24,45 @@
 
 -----------------------------------------------------------------------
 ## Overview
-Some words about the project here-
+This interaction system provides a simple and modular solution for handling interactions between an interactor (InteractorComponent) and interactable actors (InteractableComponent) in Unreal Engine. The system facilitates communication between these components through a defined interface, allowing you to easily implement and customize interactions within your projects!
 
+### Components
+#### - Interactor
+The Interactor component is responsible for initiating interactions with interactable objects. It is typically attached to the player character, or any other actor that needs interaction capabilities.
+
+##### Usage:
+- Attach to Character: Add the Interactor component to your player character or desired actor.
+- Input Action: Configure an input action for interaction (e.g., "Interact"). Bind this action in your player controller or wherever input handling is managed.
+
+#### Interactable
+The Interactable component represents objects in the world that can be interacted with. It responds to interaction requests from Interactors.
+
+##### Usage:
+- Attach to Actors: Add the Interactable component to any actor you want to make interactable.
+- Implement Interface: Make sure the actor implements the IInteractableInterface interface. This interface defines the methods needed for interaction.
+- Interaction Interface (IInteractableInterface)
+- The interface defines the communication contract between Interactors and Interactables. It includes methods like OnInteract that need to be implemented by Interactable actors.
+
+Implementation Steps
+Input Action:
+
+In your project settings, define an input action for interaction (e.g., "Interact").
+Bind this input action to the desired key or button in your player controller.
+UUserWidgets:
+
+Create UUserWidgets (UI) for any interactive feedback you want to provide to the player during interactions.
+These widgets can be triggered by the Interactable actors during interaction events.
+Attach Components:
+
+Attach the Interactor component to your player character or actor that will perform interactions.
+Attach the Interactable component to any actor you want to make interactable.
+Implement Interaction:
+
+Make sure the Interactable actors implement the IInteractableInterface.
+Implement the OnInteract method in Interactable actors to define the behavior of the interaction.
+Interaction Logic:
+
+In your player controller or wherever input is handled, call the Interact method on the attached Interactor when the interaction input is triggered.
 
 -----------------------------------------------------------------------
 
