@@ -67,14 +67,14 @@ void UInteractorComponent::Init()
 		{
 			if (UEnhancedInputComponent* TempInput = Character->EnhancedInputComponent)
 			{
-                if(InteractionInputAction != nullptr)
-                {  
-				    TempInput->BindAction(InteractionInputAction, ETriggerEvent::Started, this, &UInteractorComponent::Interact, this);
-                }
-                else
-                {
-                    UE_LOG(LogTemp, Error, TEXT("No Input Action defined for Interactions. Add one to the Blueprint that is using this component, or assign one with constructor helpers."));
-                }
+                		if(InteractionInputAction != nullptr)
+                		{  
+					TempInput->BindAction(InteractionInputAction, ETriggerEvent::Started, this, &UInteractorComponent::Interact, this);
+                		}
+                		else
+                		{
+                    			UE_LOG(LogTemp, Error, TEXT("No Input Action defined for Interactions. Add one to the Blueprint that is using this component, or assign one with constructor helpers."));
+                		}
 			}
 			
 			PlayerController = Character->GetPlayerController();
@@ -91,14 +91,14 @@ UUserWidget* UInteractorComponent::MakeUIWidget(TSubclassOf<UUserWidget> Templat
 {
 	// Create UI instance widget and apply to PlayerController
 	if (Instance == nullptr && Template != nullptr) 
-    {
-        Instance = CreateWidget<UUserWidget>
+	{
+		Instance = CreateWidget<UUserWidget>
 		(
 			GetInteractorPlayerController(),
 			Template,
 			UIName
 		);
-    }
+	}
 
 	// Shove it into the viewport and collapse it to make it invisible
 	if (Instance != nullptr)
@@ -177,9 +177,9 @@ UInteractableComponent* UInteractorComponent::AssignFocusedInteractable(UInterac
 		FocusedInteractableComponent->LookAt(this, true);
 		Event_OnLookAt(FocusedInteractableComponent);
 		if (FocusedInteractableComponent)
-        {
-            DisplayInteractionUIWidget(true, FocusedInteractableComponent->GetIsInteractable());
-        }
+		{
+			DisplayInteractionUIWidget(true, FocusedInteractableComponent->GetIsInteractable());
+		}
 
 		return FocusedInteractableComponent;
 	}
@@ -196,9 +196,9 @@ void UInteractorComponent::UnassignFocusedInteractable()
 		FocusedInteractableComponent->LookAt(this, false);
 		Event_OnLookAway(FocusedInteractableComponent);
 		if (FocusedInteractableComponent) 
-        {
-            DisplayInteractionUIWidget(false, false);
-        }
+		{
+			DisplayInteractionUIWidget(false, false);
+		}
         
 		FocusedInteractableComponent = nullptr;
 	}
@@ -218,7 +218,7 @@ void UInteractorComponent::DisplayInteractionUIWidget(const bool bActive /*= fal
 		}
 		else
 		{
-            // Hide the UI, as the component is not active.
+			// Hide the UI, as the component is not active.
 			InteractionUIInstance->SetVisibility(ESlateVisibility::Collapsed);
 			NoInteractionUIInstance->SetVisibility(ESlateVisibility::Collapsed);
 		}
