@@ -89,7 +89,7 @@ void UInteractorComponent::Init()
 
 UUserWidget* UInteractorComponent::MakeUIWidget(TSubclassOf<UUserWidget> Template, UUserWidget* Instance, FName UIName)
 {
-    // Create UI instance widget and apply to PlayerController
+	// Create UI instance widget and apply to PlayerController
 	if (Instance == nullptr && Template != nullptr) 
     {
         Instance = CreateWidget<UUserWidget>
@@ -100,7 +100,7 @@ UUserWidget* UInteractorComponent::MakeUIWidget(TSubclassOf<UUserWidget> Templat
 		);
     }
 
-    // Shove it into the viewport and collapse it to make it invisible
+	// Shove it into the viewport and collapse it to make it invisible
 	if (Instance != nullptr)
 	{
 		Instance->AddToViewport(0);
