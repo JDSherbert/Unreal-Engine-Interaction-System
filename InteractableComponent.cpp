@@ -35,7 +35,10 @@ void UInteractableComponent::Interact(UInteractorComponent* Instigator)
 	{
 		Event_OnInteraction(Instigator);
 	}
-	//...
+	
+	// You can add additional functionality here if you like. 
+	// Be aware it will apply to all of these, so I'd recommend inheriting this class instead and doing it there.
+	// OR you could define/call an implemented interface for custom handling per object.
 }
 
 /* ------------------------------------------------------------------------------- */
